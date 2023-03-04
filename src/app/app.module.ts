@@ -3,17 +3,17 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
-import { SharedModule } from './shared/shared.module';
 
+//routing
 import { AppRoutingModule } from './app-routing.module';
+import { ErrorModule } from "./pages/error/error.module"
 
 // NG Translate
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-import { HomeModule } from './home/home.module';
-import { DetailModule } from './detail/detail.module';
-
+//edit
+import { HomeModule } from './pages/home/home.module';
 import { AppComponent } from './app.component';
 
 // AoT requires an exported function for factories
@@ -23,13 +23,12 @@ const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader =>  new Transl
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     FormsModule,
     HttpClientModule,
     CoreModule,
-    SharedModule,
     HomeModule,
-    DetailModule,
-    AppRoutingModule,
+    ErrorModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -41,4 +40,5 @@ const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader =>  new Transl
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule {}
