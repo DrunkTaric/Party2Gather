@@ -1,5 +1,6 @@
+import {Router} from "@angular/router";
 import { Component } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -7,10 +8,13 @@ import { Meta, Title } from '@angular/platform-browser';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-  constructor(private title : Title) {
-    title.setTitle('Home')
+  constructor(private router: Router, private title : Title) {
+    this.title.setTitle('Home')
   }
   goToSearch() {
-    
+    this.router.navigate(['/load'])
+    setTimeout(() => {
+      this.router.navigate(['/search'])
+    }, 2000);
   }
 }
