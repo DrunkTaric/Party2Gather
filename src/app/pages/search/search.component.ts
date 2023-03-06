@@ -1,5 +1,3 @@
-import { ITitle } from "../../classes/movier";
-
 import { Router } from "@angular/router";
 import { Component } from '@angular/core';
 import { Injectable } from '@angular/core';
@@ -18,7 +16,7 @@ export class SearchComponent {
   async search(querry: string) {
     this.router.navigate(['/load'])
     if (!(querry == "" || querry == " ")) {
-      let response: ITitle[] | null = await this.service.look_for_results(querry);
+      let response: any | null = await this.service.look_for_results(querry);
       if (response != null) {
         console.log(response)
       }else {
