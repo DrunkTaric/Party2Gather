@@ -10,7 +10,7 @@ import parseMoreInfo from "./util/parse_info";
 import seriesFetcher from "./util/parse_series";
 import { decode as entityDecoder } from "html-entities";
 
-async function search(query: string) {
+export async function search(query: string) {
   try {
     if (!query) throw new Error("Query param is required");
 
@@ -87,7 +87,7 @@ function getNode(dom, tag, id) {
     .find((e) => e.attributes.find((e) => e.value === id));
 }
 
-async function info(id: string) {
+export async function info(id: string) {
   try {
     let parser = new DomParser();
     let api = new API()
