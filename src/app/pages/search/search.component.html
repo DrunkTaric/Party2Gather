@@ -1,6 +1,6 @@
 <div class="center">
-  <form>
-    <input type="text" name="name" class="question" id="nme" required autocomplete="off" />
+  <form #gfg="ngForm">
+    <input #search_querry type="text" name="name" class="question" id="nme" required autocomplete="off" (keyup.enter)="search(search_querry.value)"/>
     <label for="nme"><span>What's on your mind ?</span></label>
   </form>
 </div>
