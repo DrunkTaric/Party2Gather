@@ -1,17 +1,21 @@
 import { Injectable } from '@angular/core';
 import { search, info } from '../classes/imdb/main';
+import bInfo from '../classes/imdb/interfaces/Binfo';
+import dInfo from '../classes/imdb/interfaces/Dinfo';
+
 
 @Injectable()
 export class MovieService {
   async look_for_results(querry: string): Promise<any> | null {
     let respond: any  = await search(querry)
     if (respond) {
-      console.log(respond)
-      let _export: any = [];
-      for (let i = 0; i < respond.length; i++) {
-        if (respond[i].titleType == "movie") {
-          let movie_id: string = respond[i].source.sourceId
-          _export.push(await info(movie_id))
+      let _export: dInfo[] = [];
+      for (let i = 0; i < respond.results.length; i++) {
+        let curr_item: bInfo = respond.results[i]
+        if (curr_item.type == "movie") {
+          let movie_id: string = curr_item.id
+          let data = await info(movie_id)
+          _export.push(data)
         }
       }
       return _export;
