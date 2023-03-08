@@ -10,7 +10,7 @@ import parseMoreInfo from "./util/parse_info";
 import seriesFetcher from "./util/parse_series";
 import { decode as entityDecoder } from "html-entities";
 
-export async function search(query: string) {
+export async function search(query: string, tries?: number) {
   try {
     if (!query) throw new Error("Query param is required");
 
@@ -70,12 +70,15 @@ export async function search(query: string) {
 
     return response;
   } catch (error) {
-    let errorMessage = error.message;
-    if (error.message.includes("Too many")) errorMessage = "Too many requests error from IMDB, please try again later";
+    if (error.message.includes("Too many") == false && (tries < 3 || tries == null)) { 
+      console.log(`trying to get data for title: ${query}`); 
+      return search(query, tries + 1 | 1);
+    }
+    if (error.message.includes("Too many")) error.message = "Too many requests error from IMDB, please try again later";
     return {
       query: null,
       results: [],
-      message: errorMessage,
+      message: error.message,
     }
   }
 }
@@ -87,7 +90,7 @@ function getNode(dom, tag, id) {
     .find((e) => e.attributes.find((e) => e.value === id));
 }
 
-export async function info(id: string) {
+export async function info(id: string, tries?: number) {
   try {
     let parser = new DomParser();
     let api = new API()
@@ -131,8 +134,8 @@ export async function info(id: string) {
 
     // rating
     response.rating = {
-      count: schema.aggregateRating.ratingCount,
-      star: schema.aggregateRating.ratingValue,
+      count: schema.aggregateRating?.ratingCount?? 0,
+      star: schema.aggregateRating?.ratingValue?? 0.0,
     };
 
     // award
@@ -208,6 +211,10 @@ export async function info(id: string) {
 
     return response;
   } catch (error) {
+    console.log(error)
+    if (error.message.includes("Too many") == false && (tries < 3 || tries == null)) { 
+      console.log(`trying to get data for id: ${id}`); return info(id, tries + 1 | 1)
+    }
     return {
       message: error.message,
     };

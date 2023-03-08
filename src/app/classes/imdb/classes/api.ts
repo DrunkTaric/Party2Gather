@@ -1,28 +1,14 @@
 export class API {
 
     async apiRequestRawHtml(url) {
-        let data = await fetch(url, {
-          headers: {
-            "User-Agent":
-              "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36",
-            accept: "text/html",
-            "accept-language": "en-US",
-          },
-        });
-        let text = await data.text();
-        return text;
+      let data = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`);
+      let text = await data.text();
+      return text;
     }
 
     async apiRequestJson(url) {
-        let data = await fetch(url, {
-          headers: {
-            "User-Agent":
-              "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36",
-            accept: "text/html",
-            "accept-language": "en-US",
-          },
-        });
-        let text = await data.json();
-        return text;
+      let data = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(url)}`);
+      let text = await data.json();
+      return JSON.parse(text.contents);
     }
 }
