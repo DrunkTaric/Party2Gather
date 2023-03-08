@@ -18,7 +18,7 @@ export class SearchComponent {
     if (!(querry == "" || querry == " ")) {
       let response: any | null = await this.service.look_for_results(querry);
       if (response != null) {
-        console.log(response)
+        this.router.navigate(['/selector', {data: JSON.stringify(response)}])
       }else {
         this.router.navigate(['/error'])
       }
