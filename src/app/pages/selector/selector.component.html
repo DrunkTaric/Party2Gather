@@ -1,1 +1,32 @@
-<p>selector works!</p>
+<!--
+<div class="center">
+  <swiper [config]="config">
+    <ng-template swiperSlide>
+      <div class="slider"><img src="https://m.media-amazon.com/images/M/MV5BZWI4NjY1MmQtN2QwNS00YTQwLWJlNDItMjZjMjE1ODk3MzI4XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg" alt=""></div>
+    </ng-template> 
+    <ng-template swiperSlide>
+      <div class="slider"><img src="https://m.media-amazon.com/images/M/MV5BZjBiOGIyY2YtOTA3OC00YzY1LThkYjktMGRkYTNhNTExY2I2XkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_.jpg" alt=""></div>
+    </ng-template>
+    <ng-template swiperSlide>
+      <div class="slider"><img src="https://m.media-amazon.com/images/M/MV5BN2VjOTkwMjgtYWEyMy00MzNmLTllMjktNDI1ZmRhYTAwYTg1XkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_.jpg" alt=""></div>
+    </ng-template>
+    <ng-template swiperSlide>
+      <div class="slider"><img src="https://m.media-amazon.com/images/M/MV5BYTc0ZmJiNmItYTYwOC00YTAzLTgxY2MtMzZhNzg4MjczN2RlXkEyXkFqcGdeQXVyMTUwMzM0Njgz._V1_.jpg" alt=""></div>
+    </ng-template>
+    <ng-template swiperSlide>
+      <div class="slider"><img src="https://m.media-amazon.com/images/M/MV5BNmZkYjQzY2QtNjdkNC00YjkzLTk5NjUtY2MyNDNiYTBhN2M2XkEyXkFqcGdeQXVyMjMwNDgzNjc@._V1_.jpg" alt=""></div>
+    </ng-template>
+  </swiper>
+</div>
+-->
+<div class="center">
+  <swiper [config]="config">
+    <ng-container *ngFor="let item of items">
+      <ng-template swiperSlide>
+        <div class="slider">
+          <img src="{{item.image}}">
+        </div>
+      </ng-template>
+    </ng-container>
+  </swiper>
+</div>
