@@ -15,13 +15,6 @@ export class SearchComponent {
 
   async search(querry: string) {
     this.router.navigate(['/load'])
-    if (!(querry == "" || querry == " ")) {
-      let response: any | null = await this.service.look_for_results(querry);
-      if (response != null) {
-        this.router.navigate(['/selector', {data: JSON.stringify(response)}])
-      }else {
-        this.router.navigate(['/error'])
-      }
-    }
+    await this.service.look_for_results(querry);
   }
 }
