@@ -6,6 +6,7 @@ import { HomeRoutingModule } from './pages/home/home-routing.module';
 import { ErrorRoutingModule } from "./pages/error/error-routing.module";
 import { SearchRoutingModule } from './pages/search/search-routing.module';
 import { SelectorRoutingModule } from './pages/selector/selector-routing.module';
+import { PartyRoutingModule } from './pages/party/party-routing.module';
 
 const routes: Routes = [
   {
@@ -29,6 +30,11 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'party',
+    redirectTo: 'party',
+    pathMatch: 'full'
+  },
+  {
     path: '**',
     redirectTo: 'error',
     pathMatch: 'full'
@@ -42,7 +48,8 @@ const routes: Routes = [
     ErrorRoutingModule,
     SearchRoutingModule,
     LoadRoutingModule,
-    SelectorRoutingModule
+    SelectorRoutingModule,
+    PartyRoutingModule
   ],
   exports: [RouterModule]
 })
