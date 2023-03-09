@@ -1,6 +1,6 @@
 import SwiperCore, { SwiperOptions, Autoplay, EffectCoverflow } from 'swiper';
 import dInfo from '../../classes/imdb/interfaces/Dinfo';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component } from '@angular/core';
 
 @Component({
@@ -37,12 +37,15 @@ export class SelectorComponent {
     },
     spaceBetween: 20
   }; 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute,  private router: Router) {
     this.items = Array.from(JSON.parse(this.route.snapshot.paramMap.get("data")))
   }
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     SwiperCore.use([Autoplay, EffectCoverflow])
+  }
+  select(index: number) {
+    this.router.navigate(['/party', {id: this.items[index].id}])
   }
 }
