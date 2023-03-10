@@ -34,6 +34,9 @@
               "src/favicon.ico",
               "src/assets"
             ],
+            "allowedCommonJsDependencies": [
+              "dom-parser"
+            ],
             "styles": [
               "src/styles.scss",
               "./node_modules/swiper/swiper-bundle.css"
