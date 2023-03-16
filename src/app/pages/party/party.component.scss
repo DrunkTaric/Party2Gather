@@ -1,6 +1,115 @@
-.video {
-    border: 2px solid white ;
-    background-color: transparent;
-    height: 700px;
-    width: 1200px;
+:host {
+    --plyr-color-main: #A30000
+}
+
+.root {
+    overflow: auto;
+    position: flex;
+}
+
+.left-side {
+    float: left;
+}
+
+.right-side {
+    float: right;
+}
+
+.video-container {
+    height: 720px;
+    width : 1280px;
+    border: 8px solid rgba(255, 0, 0, 0.425);
+    border-radius: 10px;
+}
+
+#plyrID {
+    min-height: 720px;
+    min-width :1280px;
+}
+
+.users-container {
+    overflow-y: auto;
+    position: flex;
+    margin-top: 10px;
+    height: 225px;
+    width : 1280px;
+    border: 8px solid rgba(255, 0, 0, 0.425);
+    border-radius: 10px;
+}
+
+.user {
+    float: left;
+    text-align: center;
+    margin-top: 8px;
+    margin-left: 27px;
+    margin-bottom: 20px;
+    background-color: rgb(46, 46, 46);
+    border: 1px solid transparent;
+    border-radius: 10px;
+    width: 150px;
+    height: 200px;
+}
+
+.user img {
+    height: 150px;
+    width: 150px;
+}
+
+.user span {
+    bottom: 0; 
+    width: 150px;
+    font-size: 45px;
+    color: white;
+    font-family: 'American Horror Story', sans-serif;
+}
+
+.code-container {
+    height: 100px;
+    width: auto;
+}
+
+.code-container #code {
+    font-size: 90px;
+    color: white;
+    font-family: 'American Horror Story', sans-serif;
+}
+
+.code-container #mut {
+    font-family:'Times New Roman', Times, serif;
+}
+
+.chat-container {
+    align-items: center;
+    text-align: center;
+    height: 870px;
+    width: 580px;
+    border: 8px solid rgba(255, 0, 0, 0.425);
+    border-radius: 10px;
+    background-color: rgb(0, 0, 0);
+}
+
+.chat-container span {
+    color: white;
+    font-size: 150px;
+    font-family: 'American Horror Story', sans-serif;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #1b1b1b;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
