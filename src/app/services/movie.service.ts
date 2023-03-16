@@ -35,11 +35,10 @@ export class MovieService {
     respond.results = respond.results.filter(e => e.type == "movie")
     let cacher = new cache(querry.toLowerCase(), respond.results.length)
     let checker = await cacher.check()
-    console.log(checker)
     if (typeof checker != "boolean") {
       setTimeout(() => {
         this.router.navigate(['/selector', {data: JSON.stringify(checker)}]); 
-      }, 500);
+      }, 100);
       return
     };
     await this.search_for_results(respond.results, cacher)
