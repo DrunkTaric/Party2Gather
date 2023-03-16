@@ -39,9 +39,12 @@
             ],
             "styles": [
               "src/styles.scss",
-              "./node_modules/swiper/swiper-bundle.css"
+              "./node_modules/swiper/swiper-bundle.css",
+              "node_modules/plyr/dist/plyr.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/plyr/dist/plyr.js"
+            ],
             "customWebpackConfig": {
               "path": "./angular.webpack.js",
               "replaceDuplicatePlugins": true
