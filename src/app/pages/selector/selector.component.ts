@@ -1,6 +1,7 @@
 import SwiperCore, { SwiperOptions, Autoplay, EffectCoverflow } from 'swiper';
 import dInfo from '../../classes/imdb/interfaces/Dinfo';
 import { ActivatedRoute, Router } from '@angular/router';
+import { API } from '../../classes/imdb/classes/api';
 import { Component } from '@angular/core';
 
 @Component({
@@ -11,6 +12,7 @@ import { Component } from '@angular/core';
 
 export class SelectorComponent {
   items: Array<dInfo> = Array.from([])
+  api: API = new API()
   config: SwiperOptions = {
     resistance: true,
     resistanceRatio: 0.85,
@@ -45,7 +47,10 @@ export class SelectorComponent {
     //Add 'implements OnInit' to the class.
     SwiperCore.use([Autoplay, EffectCoverflow])
   }
-  select(index: number) {
-    this.router.navigate(['/party', {id: this.items[index].id}])
+  async select(index: number) {
+    this.router.navigate(['/load'])
+    let response = await fetch(`http://localhost:7878/search/${this.items[index].id}`)
+    let data = await response.json()
+    this.router.navigate(['/party', {data: JSON.stringify(data)}])
   }
 }
