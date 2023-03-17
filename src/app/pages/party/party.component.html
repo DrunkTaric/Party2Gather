@@ -2,15 +2,16 @@
     <div class="left-side">
         <div class="video-container">
             <video id='plyrID' controls playsinline>
-                <source src="http://localhost:7878/get/xt=urn:btih:157a5c4fd51184ab6e4b7b2b13a26856a2e0832f&dn=Creed+II+(2018)+%5BWEBRip%5D+%5B1080p%5D+%5BYTS.AM%5D&tr=udp%3A%2F%2Ftracker.bitsearch.to%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.breizh.pm%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Fwww.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Ftracker.moeking.me%3A6969%2Fannounce">
+                <source [src]="active">
                 <!--<source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-720p.mp4" type="video/mp4" size="720">-->
                 <!--<source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-1080p.mp4" type="video/mp4" size="1080">-->
             
-                <!-- Caption files -->
+                <!-- Caption files
+                <source [src]="item.magnet_url" [size]="item.quality">
                 <ng-container>
                     <track kind="captions" label="English" srclang="en" src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.en.vtt" default>
                     <track kind="captions" label="Français" srclang="fr" src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.fr.vtt">
-                </ng-container>
+                </ng-container> -->
                 <!-- Fallback for browsers that don't support the <video> element -->
                 <!--<a href="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" download>Download</a>-->
             </video>    
@@ -62,7 +63,7 @@
     <div class="right-side">
         <div class="code-container">
             <div id="code">
-                <span>Code: </span>
+                <span id="const">Code: </span>
                 <span id="mut">1XVK32</span>
             </div>
         </div>
