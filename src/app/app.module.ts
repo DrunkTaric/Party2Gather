@@ -18,6 +18,7 @@ import { SearchModule } from './pages/search/search.module';
 import { LoadModule } from './pages/load/load.module';
 import { HomeModule } from './pages/home/home.module';
 import { AppComponent } from './app.component';
+import { PartyModule } from './pages/party/party.module';
 
 // AoT requires an exported function for factories
 const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader =>  new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -25,14 +26,15 @@ const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader =>  new Transl
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    SearchModule,
     BrowserModule,
+    SearchModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
     CoreModule,
     HomeModule,
     ErrorModule,
+    PartyModule,
     LoadModule,
     SelectorModule,
     TranslateModule.forRoot({
