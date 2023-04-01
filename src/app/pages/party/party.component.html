@@ -1,62 +1,49 @@
 <div class="root">
     <div class="left-side">
         <div class="video-container">
+            <div id="selector">
+                <div class="dropdown">
+                  <button>Server</button>
+                  <div class="dropdown-options">
+                    <ng-container *ngFor="let item of results; let i=index">
+                        <a (click)="selectServer(i)">Server {{ i + 1 }}</a>
+                    </ng-container>  
+                  </div>
+                </div>               
+            </div>
             <video id='plyrID' controls playsinline>
-                <source [src]="active">
-                <!--<source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-720p.mp4" type="video/mp4" size="720">-->
-                <!--<source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-1080p.mp4" type="video/mp4" size="1080">-->
-            
-                <!-- Caption files
-                <source [src]="item.magnet_url" [size]="item.quality">
-                <ng-container>
-                    <track kind="captions" label="English" srclang="en" src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.en.vtt" default>
-                    <track kind="captions" label="Français" srclang="fr" src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.fr.vtt">
-                </ng-container> -->
-                <!-- Fallback for browsers that don't support the <video> element -->
-                <!--<a href="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" download>Download</a>-->
-            </video>    
+                <source [src]="getActiveMagnet()">
+            </video>
         </div>
         <!--Max Users are 7-->
         <div class="users-container">
             <div class="user">
                 <img src="https://www.nicepng.com/png/full/129-1292296_center-city-sign-register-logo.png" class="center">
-                <span>Hello</span>
+                <span>Soon</span>
             </div>
             <div class="user">
                 <img src="https://www.nicepng.com/png/full/129-1292296_center-city-sign-register-logo.png" class="center">
-                <span>Hello</span>
+                <span>Soon</span>
             </div>
             <div class="user">
                 <img src="https://www.nicepng.com/png/full/129-1292296_center-city-sign-register-logo.png" class="center">
-                <span>Hello</span>
+                <span>Soon</span>
             </div>
             <div class="user">
                 <img src="https://www.nicepng.com/png/full/129-1292296_center-city-sign-register-logo.png" class="center">
-                <span>Hello</span>
+                <span>Soon</span>
             </div>
             <div class="user">
                 <img src="https://www.nicepng.com/png/full/129-1292296_center-city-sign-register-logo.png" class="center">
-                <span>Hello</span>
+                <span>Soon</span>
             </div>
             <div class="user">
                 <img src="https://www.nicepng.com/png/full/129-1292296_center-city-sign-register-logo.png" class="center">
-                <span>Hello</span>
+                <span>Soon</span>
             </div>
             <div class="user">
                 <img src="https://www.nicepng.com/png/full/129-1292296_center-city-sign-register-logo.png" class="center">
-                <span>Hello</span>
-            </div>
-            <div class="user">
-                <img src="https://www.nicepng.com/png/full/129-1292296_center-city-sign-register-logo.png" class="center">
-                <span>Hello</span>
-            </div>
-            <div class="user">
-                <img src="https://www.nicepng.com/png/full/129-1292296_center-city-sign-register-logo.png" class="center">
-                <span>Hello</span>
-            </div>
-            <div class="user">
-                <img src="https://www.nicepng.com/png/full/129-1292296_center-city-sign-register-logo.png" class="center">
-                <span>Hello</span>
+                <span>Soon</span>
             </div>
         </div>
     </div>
@@ -64,7 +51,7 @@
         <div class="code-container">
             <div id="code">
                 <span id="const">Code: </span>
-                <span id="mut">1XVK32</span>
+                <span id="mut">Test</span>
             </div>
         </div>
         <div class="chat-container">

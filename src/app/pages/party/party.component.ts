@@ -1,4 +1,5 @@
 import Plyr from 'plyr';
+import { Router } from "@angular/router";
 import { ActivatedRoute } from '@angular/router';
 import { Component } from '@angular/core';
 
@@ -10,38 +11,55 @@ import { Component } from '@angular/core';
 export class PartyComponent {
   //link: string
   //safe: SafeResourceUrl
-  public active: string
   public results: any
   public player: Plyr
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private router: Router) {
     //this.link = `https://www.2embed.to/embed/imdb/movie?id=${this.route.snapshot.paramMap.get("id")}`
+    this.results = JSON.parse(this.route.snapshot.paramMap.get("data"))
+    console.log(this.results)
+    if (!this.results[0].active) {
+      this.addActive()
+    }
   }
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     //this.safe = this.sanitizer.bypassSecurityTrustResourceUrl(this.link)
-    let local_results = JSON.parse(this.route.snapshot.paramMap.get("data"))
-    for (let i = 0; i < local_results.length; i++) {
-      local_results[i].active = false
-      local_results[i].quality = local_results[i].quality.replace("p", "")
-      local_results[i].magnet_url = `http://localhost:7878/get/${local_results[i].magnet_url.replace("magnet:?", "")}`
-    }
-    local_results[0].active = true
-    this.active = local_results[0].magnet_url
-    this.results = local_results
     this.player = new Plyr('#plyrID', {});
-    this.player.source = local_results[0].magnet_url
-    this.player.once("play", function() {})
   }
 
-  getActiveMagnet(item) {
+  addActive() {
+    for (let i = 0; i < this.results.length; i++) {
+      this.results[i].active = false
+      this.results[i].magnet_url = `http://localhost:7878/get/${this.results[i].magnet_url.replace("magnet:?", "")}`
+    }
+    this.results[0].active = true
+  }
+
+  clearActive() {
+    for (let i = 0; i < this.results.length; i++) {
+      this.results[i].active = false
+    }
+  }
+
+  getActiveMagnet() {
     for (let i = 0; this.results.length; i++) {
       let item = this.results[i]
       if (item.active == true) {
-        console.log(item.magnet_url)
         return item.magnet_url
       }
     }
+  }
+
+  selectServer(id: number) {
+    console.log(id)
+    this.clearActive()
+    this.results[id].active = true
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    }
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate(["/party", {data: JSON.stringify(this.results)}])
   }
 }

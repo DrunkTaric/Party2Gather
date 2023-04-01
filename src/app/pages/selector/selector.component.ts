@@ -49,6 +49,7 @@ export class SelectorComponent {
   }
   async select(index: number) {
     this.router.navigate(['/load'])
+    //let response = await fetch(`http://localhost:7878/search/${this.items[index].title}/${this.items[index].year}`)
     let response = await fetch(`http://localhost:7878/search/${this.items[index].id}`)
     let data = await response.json()
     this.router.navigate(['/party', {data: JSON.stringify(data)}])
